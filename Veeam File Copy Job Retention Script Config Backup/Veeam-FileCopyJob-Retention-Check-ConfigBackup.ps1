@@ -30,3 +30,14 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 #>
+# Feel free to adjust the 30 days with a value of your choice
+$DaysToDelete = "-30"
+# Place the path where your Veeam Config Backups are located here
+$WorkingPath = "C:\VeeamConfigBackup"
+# Place the servername where the remote Veeam Config Backup files are located here
+$Server = "hostname.fq.dn"
+# Get the current date
+$CurrentDate = Get-Date
+# Check if written Veeam Configuration Backup files (.bco files) are older than 30 days and delete them
+$DeleteDays = $CurrentDate.AddDays($DaysToDelete)
+Invoke-Command -ComputerName $Server {Get-ChildItem $WorkingPath -Filter ".bco"| Where-Object { $_.LastWriteTime -lt $DeleteDays } | Remove-Item}
