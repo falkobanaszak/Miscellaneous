@@ -60,3 +60,19 @@ Write-EventLog -LogName System -Source "kohn.blog" -EntryType Information -Event
 # Lösche alte Backuplogs
 get-childitem C:\printserverexport\logs\ -Recurse| where{-not $_.PsIsContainer} | sort CreationTime -desc | select -Skip 5 | Remove-Item -Force
 
+try{
+    $BackupPath = "C:\Path\Files"
+    command.exe -Out-File $FilePath\${env:computername}_$(get-date -f dd-MM-yyyy-hhmm).file
+           
+    --write below successfull log entry
+    you also could add more checks like below
+     if (test-path "$FilePath\${env:computername}_$(get-date -f dd-MM-yyyy-hhmm)"){
+    write here successfull log entry
+    }
+    else
+    {
+     ---write here unsuccessfull log entry
+    }     
+    catch{
+    ---write here unsuccessfull log entry
+    }
