@@ -12,5 +12,6 @@ EOF_1
 $INSTHOME/db2 set write suspend for database >> $LOGHOME/veeam_write_suspend.log
 echo "+++" >> $LOGHOME/veeam_write_suspend.log << EOF_2
 EOF_2
+$INSTHOME/db2pd -db YOUR_DATABASE_NAME_HERE -dbcfg | grep 'Database is in write suspend state' >> $LOGHOME/veeam_write_suspend.log
 echo "----END----" >> $LOGHOME/veeam_write_suspend.log << EOF_3
 EOF_3
