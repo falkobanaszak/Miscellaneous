@@ -76,3 +76,5 @@ try{
     catch{
     ---write here unsuccessfull log entry
     }
+
+    # test added new line to test
